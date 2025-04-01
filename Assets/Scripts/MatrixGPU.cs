@@ -41,7 +41,7 @@ public class MatrixGPU
     {
         modelBuffer = new ComputeBuffer(modelsCount, matrixSize);
         spaceBuffer = new ComputeBuffer(spacesCount, matrixSize);
-        offsetBuffer = new ComputeBuffer(modelsCount * spacesCount, matrixSize, ComputeBufferType.Append);
+        offsetBuffer = new ComputeBuffer(spacesCount, matrixSize, ComputeBufferType.Append);
 
         modelBuffer.SetData(models);
         spaceBuffer.SetData(spaces);
