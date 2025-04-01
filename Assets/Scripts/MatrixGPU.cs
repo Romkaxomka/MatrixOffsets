@@ -21,22 +21,6 @@ public class MatrixGPU
         this.spacesCount = spacesCount;
     }
 
-    bool MatrixCompare(Matrix4x4 a, Matrix4x4 b)
-    {
-        for (int i = 0; i < 4; i++)
-        {
-            for (int j = 0; j < 4; j++)
-            {
-                if (Mathf.Abs(a[i, j] - b[i, j]) > 1e-3)
-                {
-                    return false;
-                }
-            }
-        }
-
-        return true;
-    }
-
     public List<Matrix4x4> Compute(Matrix4x4[] models, Matrix4x4[] spaces)
     {
         modelBuffer = new ComputeBuffer(modelsCount, matrixSize);
@@ -69,14 +53,6 @@ public class MatrixGPU
             { 
                 break; 
             }
-
-            //foreach (var item in offsets)
-            //{
-            //    if(MatrixCompare(item, matrix))
-            //    {
-            //        continue;
-            //    }
-            //}
 
             offsets.Add(matrix);
         }
