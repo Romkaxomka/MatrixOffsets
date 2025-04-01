@@ -93,7 +93,7 @@ public class SceneCore : MonoBehaviour
             matrix4X4.rotation
         );
 
-        cube.transform.localScale = matrix4X4.lossyScale;
+        //cube.transform.localScale = matrix4X4.lossyScale;
 
         return cube.GetComponent<CubeColor>();
     }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class MatrixGPU
@@ -18,6 +19,22 @@ public class MatrixGPU
 
         this.modelsCount = modelsCount;
         this.spacesCount = spacesCount;
+    }
+
+    bool MatrixCompare(Matrix4x4 a, Matrix4x4 b)
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            for (int j = 0; j < 4; j++)
+            {
+                if (Mathf.Abs(a[i, j] - b[i, j]) > 1e-3)
+                {
+                    return false;
+                }
+            }
+        }
+
+        return true;
     }
 
     public List<Matrix4x4> Compute(Matrix4x4[] models, Matrix4x4[] spaces)
@@ -48,11 +65,18 @@ public class MatrixGPU
         List<Matrix4x4> offsets = new List<Matrix4x4>();
         foreach (var matrix in offsetResults)
         {
-            if (matrix != Matrix4x4.zero) 
-                offsets.Add(matrix);
-        }
+            if (matrix == Matrix4x4.zero) continue;
 
-        Debug.Log(offsetResults[0]);
+            //foreach (var item in offsets)
+            //{
+            //    if(MatrixCompare(item, matrix))
+            //    {
+            //        continue;
+            //    }
+            //}
+
+            offsets.Add(matrix);
+        }
 
         modelBuffer.Release();
         spaceBuffer.Release();
