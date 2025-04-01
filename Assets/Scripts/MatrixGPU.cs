@@ -65,7 +65,10 @@ public class MatrixGPU
         List<Matrix4x4> offsets = new List<Matrix4x4>();
         foreach (var matrix in offsetResults)
         {
-            if (matrix == Matrix4x4.zero) continue;
+            if (matrix == Matrix4x4.zero) 
+            { 
+                break; 
+            }
 
             //foreach (var item in offsets)
             //{

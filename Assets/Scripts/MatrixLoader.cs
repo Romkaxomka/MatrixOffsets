@@ -12,7 +12,7 @@ public static class MatrixLoader
 
     public static void SaveToFile(string fileName, Matrix4x4[] matrices)
     {
-        var savePath = Application.persistentDataPath + Path.DirectorySeparatorChar + fileName;
+        var savePath = Application.persistentDataPath + Path.AltDirectorySeparatorChar + fileName;
         Matrix4x4_[] matrices_ = Array.ConvertAll(matrices, matrix => (Matrix4x4_)matrix);
         File.WriteAllText(savePath, JsonConvert.SerializeObject(matrices_, new JsonSerializerSettings
         {

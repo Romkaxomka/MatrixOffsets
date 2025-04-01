@@ -87,10 +87,12 @@ public class SceneCore : MonoBehaviour
 
     public CubeColor CreateCube(Matrix4x4 matrix4X4)
     {
+        Quaternion rotation = Quaternion.LookRotation(matrix4X4.GetColumn(2), matrix4X4.GetColumn(1));
+
         GameObject cube = Instantiate(
             cubePrefab,
             matrix4X4.GetPosition(),
-            matrix4X4.rotation
+            rotation
         );
 
         //cube.transform.localScale = matrix4X4.lossyScale;
