@@ -63,16 +63,15 @@ float4x4 InverseMatrix(float4x4 m, float det)
     return ret;
 }
 
-[numthreads(16, 32, 1)]
+[numthreads(256, 1, 1)]
 void SolveMatrix4(uint3 id : SV_DispatchThreadID)
 {
-    int modelIdx = id.x;
-    int spaceIdx = id.y;
+    int spaceIdx = id.x;
 
-    if (modelIdx >= modelsCount || spaceIdx >= spacesCount)
+    if (spaceIdx >= spacesCount)
         return;
 
-    float4x4 m = modelMatrices[modelIdx];
+    float4x4 m = modelMatrices[0];
     float4x4 s = spaceMatrices[spaceIdx];
     
     float det = determinant(m);

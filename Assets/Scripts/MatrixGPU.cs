@@ -57,7 +57,7 @@ public class MatrixGPU
 
         computeShader.GetKernelThreadGroupSizes(kernelHandle, out var _threadX, out var _threadY, out var _threadZ);
 
-        computeShader.Dispatch(kernelHandle, Mathf.CeilToInt(modelsCount / _threadX) + 1, Mathf.CeilToInt((float)spacesCount / _threadY) + 1, 1);
+        computeShader.Dispatch(kernelHandle, Mathf.CeilToInt((float)spacesCount / _threadX) + 1, 1, 1);
 
         Matrix4x4[] offsetResults = new Matrix4x4[offsetBuffer.count];
         offsetBuffer.GetData(offsetResults);
